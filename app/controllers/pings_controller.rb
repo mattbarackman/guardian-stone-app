@@ -15,7 +15,7 @@ class PingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_device
-      @device = Device.find(params[:id])
+      @device = Device.find_by_particle_id(params[:id])
     end
 
 end
