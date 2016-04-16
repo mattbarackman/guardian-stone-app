@@ -13,12 +13,15 @@
 
 ActiveRecord::Schema.define(version: 20160410202237) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "devices", force: :cascade do |t|
-    t.string   "timestamps",  limit: 255
-    t.string   "name",        limit: 255
-    t.string   "particle_id", limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "timestamps"
+    t.string   "name"
+    t.string   "particle_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end
