@@ -61,6 +61,14 @@ class DevicesController < ApplicationController
     end
   end
 
+  def on
+    
+  end
+
+  def off
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_device
