@@ -1,14 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+	<p>
+		<strong>Name:</strong>
+		<%= @device.name %>
+	</p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @device.name %>
-</p>
+	<p>
+		<strong>Particle:</strong>
+		<%= @device.particle_id %>
+	</p>
 
-<p>
-  <strong>Particle:</strong>
-  <%= @device.particle_id %>
-</p>
+	<%= link_to 'Turn On', device_on_path(@device), :method => :post, :remote => true %> |
+	<%= link_to 'Turn Off', device_off_path(@device), :method => :post, :remote => true %> |
+	<%= link_to 'Battery Level', device_battery_path(@device) %> |
+	<%= link_to 'Edit', edit_device_path(@device) %> |
+	<%= link_to 'Back', devices_path %>
+</div>
 
-<%= link_to 'Edit', edit_device_path(@device) %> |
-<%= link_to 'Back', devices_path %>

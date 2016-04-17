@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   get 'devices/:id/ping' => 'pings#create'
 
+  post 'devices/:id/on' => 'devices#on', :as => :device_on
+  post 'devices/:id/off' => 'devices#off', :as => :device_off
+  get  'devices/:id/battery' => 'devices#battery', :as => :device_battery
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

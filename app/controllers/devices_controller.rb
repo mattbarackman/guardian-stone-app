@@ -1,5 +1,5 @@
 class DevicesController < ApplicationController
-  before_action :set_device, only: [:show, :edit, :update, :destroy]
+  before_action :set_device, :except => [:index, :new, :create]
 
   # GET /devices
   # GET /devices.json
@@ -62,11 +62,26 @@ class DevicesController < ApplicationController
   end
 
   def on
-    
+    @device.turn_on!
+    render json: {}, status: :success
   end
 
   def off
+    @device.turn_off!
+    render json: {}, status: :success
+  end
 
+  def battery
+    # level = @device.battery_level
+    level = 9 
+    case level
+    when level <= 2
+      redirect_to @device, error: "Battery is at #{level * 10}%."
+    when level <= 5
+      redirect_to @device, warn: "Battery is at #{level * 10}%."
+    else
+      redirect_to @device, notice: "Battery is at #{level * 10}%."
+    end
   end
 
   private

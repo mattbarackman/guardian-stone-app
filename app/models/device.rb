@@ -26,16 +26,22 @@ class Device < ActiveRecord::Base
 
 
 	def turn_on!
-		post_particle_function("turnon")
+		post_particle_function!("turnon")
 	end
 
 	def turn_off!
-		post_particle_function("turnoff")
+		post_particle_function!("turnoff")
 	end
 
 	def on?
-		resp = get_particle_variable("on")
+		resp = get_particle_variable!("on")
 		JSON.parse(resp)["result"] == 1
+	end
+
+	def battery_level
+		resp = post_particle_function!("batt")
+		p resp
+		JSON.parse(resp)["return_value"]
 	end
 
 end
