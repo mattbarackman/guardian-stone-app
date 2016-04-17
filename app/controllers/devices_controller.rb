@@ -28,7 +28,7 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.save
-        format.html { redirect_to @device, notice: 'Device was successfully created.' }
+        format.html { redirect_to @device, flash: { info: 'Device was successfully created.' }}
         format.json { render :show, status: :created, location: @device }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class DevicesController < ApplicationController
   def update
     respond_to do |format|
       if @device.update(device_params)
-        format.html { redirect_to @device, notice: 'Device was successfully updated.' }
+        format.html { redirect_to @device, flash: { info: 'Device was successfully updated.' }}
         format.json { render :show, status: :ok, location: @device }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class DevicesController < ApplicationController
   def destroy
     @device.destroy
     respond_to do |format|
-      format.html { redirect_to devices_url, notice: 'Device was successfully destroyed.' }
+      format.html { redirect_to devices_url, flash: { info: 'Device was successfully destroyed.' }}
       format.json { head :no_content }
     end
   end
@@ -72,15 +72,15 @@ class DevicesController < ApplicationController
   end
 
   def battery
-    # level = @device.battery_level
-    level = 9 
-    case level
+    level = @device.battery_level
+    # level = 8 
+    case
     when level <= 2
-      redirect_to @device, error: "Battery is at #{level * 10}%."
+      redirect_to @device, flash: {:danger => "Battery is low at #{level * 10}%."}
     when level <= 5
-      redirect_to @device, warn: "Battery is at #{level * 10}%."
+      redirect_to @device, flash: {:warning => "Battery is okay at #{level * 10}%."}
     else
-      redirect_to @device, notice: "Battery is at #{level * 10}%."
+      redirect_to @device, flash: {:success => "Battery is great at #{level * 10}%."}
     end
   end
 

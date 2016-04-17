@@ -25,9 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'rest-client'
 
-group :assets do
-	gem 'twitter-bootstrap-rails'
-end
+gem 'twitter-bootstrap-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

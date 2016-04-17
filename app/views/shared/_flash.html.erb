@@ -1,8 +1,7 @@
-<% map = {"notice" => "success", "warn" => "warning", "error" => "danger"} %>
 <% flash.each do |name, msg| %>
 	<% if msg.is_a?(String) %>
 	<div class="row">
-		<%= content_tag :div, msg, :class => "alert-#{map[name]}", :role => "alert" %>
+		<%= content_tag :div, msg, :class => "alert-#{name}", :role => "alert" %>
 	</div>
 	<% end %>
 <% end %>
