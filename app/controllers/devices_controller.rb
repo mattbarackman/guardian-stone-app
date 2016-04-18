@@ -63,26 +63,19 @@ class DevicesController < ApplicationController
 
   def on
     @device.turn_on!
-    render json: {}, status: :success
+    redirect_to device_dashboard_path(@device), flash: { success: 'Device was turned on.' }
   end
 
   def off
     @device.turn_off!
-    render json: {}, status: :success
+    redirect_to device_dashboard_path(@device), flash: { success: 'Device was turned on.' }
   end
 
-  def battery
-    level = @device.battery_level
-    # level = 8 
-    case
-    when level <= 2
-      redirect_to @device, flash: {:danger => "Battery is low at #{level * 10}%."}
-    when level <= 5
-      redirect_to @device, flash: {:warning => "Battery is okay at #{level * 10}%."}
-    else
-      redirect_to @device, flash: {:success => "Battery is great at #{level * 10}%."}
-    end
+
+  def dashboard
+
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,0 +1,23 @@
+<% model_class = Device %>
+<div class="row page-header">
+	<h1><%=t '.title', :default => @device.name.titleize %></h1>
+</div>
+
+<div class="row">
+	<dl>
+		<dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+		<dd><%= @device.name %></dd>
+		<dt><strong><%= model_class.human_attribute_name(:power_level) %>:</strong></dt>
+		<dd><%= "#{@device.power_level}%"%></dd>
+	</dl>
+</div>
+
+<div class="row">
+	<% if @device.on? %>
+		<%= link_to 'Turn Off', device_off_path(@device), :method => :post, :class => 'btn btn-warning' %>
+	<% else %>
+		<%= link_to 'Turn On', device_on_path(@device), :method => :post, :class => 'btn btn-default' %>
+	<% end %>
+	<%= link_to t('.back', :default => t("helpers.links.back")),
+								@device, :class => 'btn btn-default', :method => :get  %>
+</div>

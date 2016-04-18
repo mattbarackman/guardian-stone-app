@@ -13,8 +13,8 @@ class Device < ActiveRecord::Base
 			)
 	end
 
-	def get_particle_variable!(command)
-		RestClient.get(
+	def get_particle_variable(command)
+		resp = RestClient.get(
 			particle_endpoint + command,
 				{
 					:params => {
@@ -22,6 +22,7 @@ class Device < ActiveRecord::Base
 					}
 				}
 			)
+		JSON.parse(resp)["result"]
 	end
 
 
@@ -34,14 +35,11 @@ class Device < ActiveRecord::Base
 	end
 
 	def on?
-		resp = get_particle_variable!("on")
-		JSON.parse(resp)["result"] == 1
+		get_particle_variable("on") == 1
 	end
 
-	def battery_level
-		resp = post_particle_function!("batt")
-		p resp
-		JSON.parse(resp)["return_value"]
+	def power_level
+		get_particle_variable("power")
 	end
 
 end
