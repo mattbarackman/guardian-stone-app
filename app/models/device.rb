@@ -35,11 +35,32 @@ class Device < ActiveRecord::Base
 	end
 
 	def on?
-		get_particle_variable("on") == 1
+		get_particle_variable("O") == 1
 	end
 
 	def power_level
-		get_particle_variable("power")
+		get_particle_variable("P")
 	end
+
+	def coords
+		@coords ||= get_particle_variable("L")
+	end
+
+	def location
+		if coords.blank?
+			nil
+		else
+			@location ||= Geocoder.search(coords).first.formatted_address
+		end
+	end
+
+	def coords_time
+		if coords.blank?
+			nil
+		else
+			Time.at(get_particle_variable("T")).to_datetime
+		end
+	end
+
 
 end
