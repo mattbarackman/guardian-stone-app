@@ -1,6 +1,6 @@
 class Device < ActiveRecord::Base
 
-	has_many :pings
+	has_many :locations
 
 	def particle_endpoint
 		"https://api.particle.io/v1/devices/#{particle_id}/"
@@ -59,6 +59,15 @@ class Device < ActiveRecord::Base
 			nil
 		else
 			Time.at(get_particle_variable("T")).to_datetime
+		end
+	end
+
+	def nearby_locations
+		current_location = locations.last
+		if locations.last
+			locations.order(:id => :desc).limit(5).near(current_location, 0.5, :units => :km)
+		else
+			[]
 		end
 	end
 

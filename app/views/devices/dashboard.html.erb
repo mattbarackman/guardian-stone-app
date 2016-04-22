@@ -5,25 +5,18 @@
 
 <div class="row">
 	<dl>
-		<dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+		<dt><strong>Name:</strong></dt>
 		<dd><%= @device.name %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:power_level) %>:</strong></dt>
+		<dt><strong>Power Remaining:</strong></dt>
 		<dd><%= "#{@device.power_level}%"%></dd>
-		<dt><strong><%= model_class.human_attribute_name(:location) %>:</strong></dt>
-		<% if @device.coords.present? %>
-			<dd><%= "#{@device.coords_time} - #{@device.coords} - #{@device.location}"%></dd>
-		<% else %>
-			<dd><%= "Not found."%></dd>
-		<% end %>
-	</dl>
 </div>
 
 <div class="row">
 	<% if @device.on? %>
-		<%= link_to 'Turn Off', device_off_path(@device), :method => :post, :class => 'btn btn-warning' %>
+		<%= link_to 'Turn Off', off_device_path(@device), :method => :post, :class => 'btn btn-warning' %>
 	<% else %>
-		<%= link_to 'Turn On', device_on_path(@device), :method => :post, :class => 'btn btn-default' %>
+		<%= link_to 'Turn On', on_device_path(@device), :method => :post, :class => 'btn btn-default' %>
 	<% end %>
 	<%= link_to t('.back', :default => t("helpers.links.back")),
-								@device, :class => 'btn btn-default', :method => :get  %>
+								device_path(@device.particle_id), :class => 'btn btn-default', :method => :get  %>
 </div>

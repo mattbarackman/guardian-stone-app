@@ -28,6 +28,9 @@ gem 'rest-client'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 
 gem 'geocoder'
+gem 'gmaps4rails'
+gem 'lodash-rails'
+gem 'local_time'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

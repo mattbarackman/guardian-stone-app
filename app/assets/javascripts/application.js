@@ -13,5 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require lodash
+//= require gmaps/google
+//= require local_time
 //= require turbolinks
 //= require_tree .
