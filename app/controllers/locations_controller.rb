@@ -1,7 +1,8 @@
 class LocationsController < ApplicationController
 
   before_action :set_device
-
+  protect_from_forgery :except => :create
+  
   def create
     @location = @device.locations.build(location_params)
 

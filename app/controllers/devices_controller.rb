@@ -24,8 +24,8 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.save
-        format.html { redirect_to @device, flash: { info: 'Device was successfully created.' }}
-        format.json { render :show, status: :created, location: @device }
+        format.html { redirect_to device_path(@device.particle_id), flash: { info: 'Device was successfully created.' }}
+        format.json { render :show, status: :created, location: device_path(@device.particle_id) }
       else
         format.html { render :new }
         format.json { render json: @device.errors, status: :unprocessable_entity }
@@ -36,8 +36,8 @@ class DevicesController < ApplicationController
   def update
     respond_to do |format|
       if @device.update(device_params)
-        format.html { redirect_to @device, flash: { info: 'Device was successfully updated.' }}
-        format.json { render :show, status: :ok, location: @device }
+        format.html { redirect_to device_path(@device.particle_id), flash: { info: 'Device was successfully updated.' }}
+        format.json { render :show, status: :ok, location: device_path(@device.particle_id) }
       else
         format.html { render :edit }
         format.json { render json: @device.errors, status: :unprocessable_entity }
