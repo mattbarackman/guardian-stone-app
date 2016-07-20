@@ -1,4 +1,4 @@
-# README
+# Guardian Stone - Web App
 
 This Ruby on Rails application is part of a larger system I'm developing that will provide a 'pager duty' style alerting system showing the current location of a wheelchair bound friend if he ever falls out of his chair.
 
